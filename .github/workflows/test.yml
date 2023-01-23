@@ -22,9 +22,8 @@ jobs:
 
       - name: Setup Mysql
         run: |
-          mysql --host 127.0.0.1 --port 3306 -proot -e "SET GLOBAL character_set_server = 'utf8mb4'"
-          mysql --host 127.0.0.1 --port 3306 -proot -e "SET GLOBAL collation_server = 'utf8mb4_bin'"
+          mysql --host localhost --port 3306 -u root -proot -e "SET GLOBAL character_set_server = 'utf8mb4'"
 
       - name: check ping
         run: |
-          mysql --host=127.0.0.1 --user=user --password=root -e "show variables like 'chara%'"
+          mysql --host=localhost --user=user --password=root -e "show variables like 'chara%'"
