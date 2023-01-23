@@ -1,0 +1,30 @@
+name: testing
+
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: mysql:8.0.23
+        ports:
+          - 3306:3306
+        env:
+          TZ: Asia/Tokyo
+          MYSQL_DATABASE: topa_test
+          MYSQL_USER: user
+          MYSQL_PASSWORD: root
+          MYSQL_ROOT_PASSWORD: root
+        options: --health-cmd "mysqladmin ping -h localhost" --health-interval 20s --health-timeout 10s --health-retries 10
+
+    steps:
+
+      - name: Setup Mysql
+        run: |
+          mysql --protocol=tcp --host=localhost --user=user --password=root -e "ALTER DATABASE topa_test CHARACTER SET utf8mb4 COLLATE utf8mb4_bin"
+          mysql --protocol=tcp --host=localhost --user=user --password=root -e "SHOW CREATE DATABASE topa_test"
+
+      - name: check ping
+        run: |
+          mysql --protocol=tcp --host=localhost --user=user --password=root -e "show variables like 'chara%'"
