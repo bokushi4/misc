@@ -20,12 +20,7 @@ jobs:
           mysql user: user
           mysql password: root
 
-#      - name: Wait for MySQL
-#        run: |
-#          while ! mysqladmin ping --password=root; do
-#            sleep 2
-#          done
-     - name: check ping
-       run: |
-         sleep 30
-         mysql --host=localhost --user=user --password=root -e "show variables like 'chara%'"
+      - name: check ping
+        run: |
+          sleep 30
+          mysql --host=localhost --user=user --password=root -e "show variables like 'chara%'"
