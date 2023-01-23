@@ -23,6 +23,8 @@ jobs:
       - name: Setup Mysql
         run: |
           mysql --protocol=tcp --host=localhost --port=3306 --user=root --password=root -e "SET GLOBAL character_set_server = 'utf8mb4'"
+          mysql --protocol=tcp --host=localhost --port=3306 --user=root --password=root -e "SET GLOBAL collation_server = 'utf8mb4_bin'"
+          mysql --protocol=tcp --host=localhost --port=3306 --user=root --password=root -e "show create database topa_test"
 
       - name: check ping
         run: |
