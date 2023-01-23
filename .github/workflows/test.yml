@@ -9,6 +9,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: prepare mysql
+        run: |
+          sudo systemctl start mysql
+
       - name: Setup MySQL
         uses: mirromutth/mysql-action@v1.1 # https://github.com/marketplace/actions/setup-mysql
         with:
@@ -24,8 +28,6 @@ jobs:
       
       - name: Wait for MySQL
         run: |
-          sudo mysqld --initialize
-          sudo systemctl start mysql          
           while ! mysqladmin ping --host=localhost --password=root; do
             sleep 2
           done
