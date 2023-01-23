@@ -24,6 +24,7 @@ jobs:
       
       - name: Wait for MySQL
         run: |
+          sudo /etc/init.d/mysql start
           while ! mysqladmin ping --host=localhost --password=root; do
             sleep 2
           done
