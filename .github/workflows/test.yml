@@ -22,8 +22,8 @@ jobs:
 
       - name: Setup Mysql
         run: |
-          mysql --protocol=tcp --host=localhost --port=3306 --user=root --password=root -e "ALTER DATABASE topa_test CHARACTER SET utf8mb4 COLLATE utf8mb4_bin"
-          mysql --protocol=tcp --host=localhost --port=3306 --user=root --password=root -e "SHOW CREATE DATABASE topa_test"
+          mysql --protocol=tcp --password=root -e "ALTER DATABASE topa_test CHARACTER SET utf8mb4 COLLATE utf8mb4_bin"
+          mysql --protocol=tcp --password=root -e "SHOW CREATE DATABASE topa_test"
 
       - name: check ping
         run: |
