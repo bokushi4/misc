@@ -17,6 +17,7 @@ jobs:
       
       - name: Wait for MySQL
         run: |
+          ls /var/run/mysqld/
           while ! mysqladmin ping --password=root; do
             sleep 2
           done
