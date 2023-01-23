@@ -22,10 +22,8 @@ jobs:
 
       - name: Setup Mysql
         run: |
-          mysqld --initialize
-          systemctl start mysql
-          mysql --host localhost --port 3306 -u root -proot -e "SET GLOBAL character_set_server = 'utf8mb4'"
+          mysql --protocol tcp --host localhost --port 3306 -u root -proot -e "SET GLOBAL character_set_server = 'utf8mb4'"
 
       - name: check ping
         run: |
-          mysql --host=localhost --user=user --password=root -e "show variables like 'chara%'"
+          mysql --protocol=tcp --host=localhost --user=user --password=root -e "show variables like 'chara%'"
